@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טופס ביטול עסקה</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .form-content {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .disclaimer {
+            background: #f8f9fa;
+            border-right: 4px solid #1a237e;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .disclaimer h3 {
+            color: #1a237e;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .disclaimer p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .form-content {
+                padding: 25px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>טופס ביטול עסקה</h1>
+            <p>[מילוי לרכישות תכנות]</p>
+        </div>
+
+        <div class="form-content">
+            <form id="cancellationForm">
+                <div class="form-group">
+                    <label for="fullName">שם מלא:</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">מספר דיהני:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="orderNumber">פרטי יצירת קשר:</label>
+                    <input type="text" id="orderNumber" name="orderNumber" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="reason">סיבת ביטול העסקה:</label>
+                    <textarea id="reason" name="reason" required></textarea>
+                </div>
+
+                <div class="disclaimer">
+                    <h3>דיסקליימר:</h3>
+                    <p>הצהרת ביטול העסקה כפופה למדיניות הביטולים של החברה ולפי הוראות הדין ותתבצע בהתאם להצהרות של המומר בשלמות הדעת של הנגנשה".</p>
+                </div>
+
+                <button type="submit" class="submit-btn">שלח טופס ביטול</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('cancellationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                phone: document.getElementById('phone').value,
+                orderNumber: document.getElementById('orderNumber').value,
+                reason: document.getElementById('reason').value
+            };
+
+            console.log('טופס נשלח:', formData);
+            
+            alert('הטופס נשלח בהצלחה! נציג יצור איתך קשר בהקדם.');
+            
+            // כאן תוכל להוסיף שליחה לשרת או Firebase
+            // this.reset();
+        });
+    </script>
+</body>
+</html>
