@@ -66,6 +66,7 @@
         input[type="text"],
         input[type="email"],
         input[type="tel"],
+        input[type="date"],
         select,
         textarea {
             width: 100%;
@@ -80,6 +81,7 @@
         input[type="text"]:focus,
         input[type="email"]:focus,
         input[type="tel"]:focus,
+        input[type="date"]:focus,
         select:focus,
         textarea:focus {
             outline: none;
@@ -134,6 +136,55 @@
             transform: translateY(0);
         }
 
+        .radio-group {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f0f4ff;
+            border-radius: 8px;
+            border: 2px solid #1a237e;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-left: 10px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .club-warning {
+            display: none;
+            background: #fff3cd;
+            border: 3px solid #ffc107;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .club-warning h2 {
+            color: #856404;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .club-warning p {
+            color: #856404;
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        #mainForm {
+            display: none;
+        }
+
         @media (max-width: 600px) {
             .header h1 {
                 font-size: 1.5em;
@@ -157,55 +208,117 @@
         </div>
 
         <div class="form-content">
+            <div class="radio-group">
+                <p style="font-weight: 600; font-size: 1.2em; margin-bottom: 15px;">האם רכשתם כרטיסים דרך מועדונים (פייס, ארגון המורים וכו...) ולא ישירות מאתר הטכנודע?</p>
+                <label>
+                    <input type="radio" name="purchaseSource" value="כן" required>
+                    כן
+                </label>
+                <label>
+                    <input type="radio" name="purchaseSource" value="לא" required>
+                    לא
+                </label>
+            </div>
+
+            <div class="club-warning" id="clubWarning">
+                <h2>⚠️ שימו לב ⚠️</h2>
+                <p>במידה ורכשתם כרטיסים דרך מועדונים,<br>יש לבטלם דרך המועדון בו רכשתם את הכרטיסים</p>
+            </div>
+
             <form id="cancellationForm">
-                <div class="form-group">
-                    <label for="fullName">שם מלא:</label>
-                    <input type="text" id="fullName" name="fullName" required>
-                </div>
+                <div id="mainForm">
+                    <div class="form-group">
+                        <label for="fullName">שם מלא:</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
 
                 <div class="form-group">
                     <label for="idNumber">מספר תעודת זהות:</label>
                     <input type="text" id="idNumber" name="idNumber" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="phone">מספר טלפון:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
+                    <div class="form-group">
+                        <label for="phone">מספר טלפון:</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="product">המוצר שרכשתי:</label>
-                    <select id="product" name="product" required>
-                        <option value="">בחר מוצר...</option>
-                        <option value="מוזיאון רפואה">מוזיאון רפואה</option>
-                        <option value="פעילות לגיל הרך">פעילות לגיל הרך</option>
-                        <option value="הפנינג">הפנינג</option>
-                        <option value="פעילות בתי ספר">פעילות בתי ספר</option>
-                        <option value="אחר">אחר</option>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label for="email">כתובת דוא"ל:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
 
-                <div class="form-group" id="detailsGroup" style="display: none;">
-                    <label for="details">פרט:</label>
-                    <input type="text" id="details" name="details">
-                </div>
+                    <div class="form-group">
+                        <label for="visitDate">תאריך ביקור בטכנודע:</label>
+                        <input type="date" id="visitDate" name="visitDate" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="reason">סיבת ביטול העסקה:</label>
-                    <textarea id="reason" name="reason" required></textarea>
-                </div>
+                    <div class="form-group">
+                        <label for="product">המוצר שרכשתי:</label>
+                        <select id="product" name="product" required>
+                            <option value="">בחר מוצר...</option>
+                            <option value="מוזיאון רפואה">מוזיאון רפואה</option>
+                            <option value="פעילות לגיל הרך">פעילות לגיל הרך</option>
+                            <option value="הפנינג">הפנינג</option>
+                            <option value="פעילות בתי ספר">פעילות בתי ספר</option>
+                            <option value="אחר">אחר</option>
+                        </select>
+                    </div>
 
-                <div class="disclaimer">
-                    <h3>תניית פטור:</h3>
-                    <p>יובהר כי הזכאות לביטול העסקה כפופה למדיניות הביטולים של הטכנודע ולפי הוראות הדין ותתבצע בהתאם לשיקול דעתו של טכנודע חדרה.</p>
-                </div>
+                    <div class="form-group" id="detailsGroup" style="display: none;">
+                        <label for="details">פרט:</label>
+                        <input type="text" id="details" name="details">
+                    </div>
 
-                <button type="submit" class="submit-btn">שלח טופס ביטול</button>
+                    <div class="form-group">
+                        <label for="transactionNumber">מספר עסקה (אופציונלי):</label>
+                        <input type="text" id="transactionNumber" name="transactionNumber">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reason">סיבת ביטול העסקה:</label>
+                        <textarea id="reason" name="reason" required></textarea>
+                    </div>
+
+                    <div class="disclaimer">
+                        <h3>תניית פטור:</h3>
+                        <p>יובהר כי הזכאות לביטול העסקה כפופה למדיניות הביטולים של הטכנודע ולפי הוראות הדין ותתבצע בהתאם לשיקול דעתו של טכנודע חדרה.</p>
+                    </div>
+
+                    <button type="submit" class="submit-btn">שלח טופס ביטול</button>
+                </div>
             </form>
         </div>
     </div>
 
     <script>
+        // הצגה/הסתרה של הטופס או האזהרה בהתאם למקור הרכישה
+        document.querySelectorAll('input[name="purchaseSource"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const mainForm = document.getElementById('mainForm');
+                const clubWarning = document.getElementById('clubWarning');
+
+                if (this.value === 'כן') {
+                    mainForm.style.display = 'none';
+                    clubWarning.style.display = 'block';
+                    // הסרת required מכל השדות בטופס
+                    document.querySelectorAll('#mainForm input, #mainForm select, #mainForm textarea').forEach(field => {
+                        field.required = false;
+                    });
+                } else {
+                    mainForm.style.display = 'block';
+                    clubWarning.style.display = 'none';
+                    // החזרת required לשדות הנדרשים
+                    document.getElementById('fullName').required = true;
+                    document.getElementById('idNumber').required = true;
+                    document.getElementById('phone').required = true;
+                    document.getElementById('email').required = true;
+                    document.getElementById('visitDate').required = true;
+                    document.getElementById('product').required = true;
+                    document.getElementById('reason').required = true;
+                }
+            });
+        });
+
         // הצגה/הסתרה של שדה פירוט בהתאם לבחירה
         document.getElementById('product').addEventListener('change', function() {
             const detailsGroup = document.getElementById('detailsGroup');
@@ -231,9 +344,20 @@
             formData.append('entry.616687837', document.getElementById('fullName').value);
             formData.append('entry.1421435929', document.getElementById('idNumber').value);
             formData.append('entry.1721105760', document.getElementById('phone').value);
+            formData.append('entry.453845195', document.getElementById('email').value);
+
+            // המרת תאריך מפורמט YYYY-MM-DD ל-DD/MM/YYYY
+            const visitDate = document.getElementById('visitDate').value;
+            if (visitDate) {
+                const [year, month, day] = visitDate.split('-');
+                const formattedDate = `${day}/${month}/${year}`;
+                formData.append('entry.1128424951', formattedDate);
+            }
+
             formData.append('entry.1808925230', document.getElementById('product').value);
-            formData.append('entry.1683836097', document.getElementById('reason').value);
-            formData.append('entry.2106307534', document.getElementById('details').value);
+            formData.append('entry.1797868408', document.getElementById('transactionNumber').value);
+            formData.append('entry.2106307534', document.getElementById('reason').value);
+            formData.append('entry.1683836097', document.getElementById('details').value);
 
             // שליחה לגוגל פורמס
             fetch(formURL, {
@@ -243,6 +367,7 @@
             }).then(() => {
                 alert('הטופס נשלח בהצלחה! נציג יצור איתך קשר בהקדם.');
                 document.getElementById('cancellationForm').reset();
+                document.getElementById('mainForm').style.display = 'none';
             }).catch((error) => {
                 console.error('שגיאה:', error);
                 alert('אירעה שגיאה בשליחת הטופס. אנא נסה שוב.');
